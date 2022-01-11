@@ -1,9 +1,14 @@
 import * as api from '../api'
 
 //action creators- functions that return actions
+//response data object is fetched from the api and data post is returned it from the backend
 
-const getPosts = () => {
-  const action = { type: "FETCH_ALL", payload: [] }
+export const getPosts = () => async (dispatch) => {
+  try {
+    const { data } = await api.fetchPosts()
 
-  return action;
+    dispatch({ type: "FETCH_ALL", payload: data });
+  } catch (error) {
+    console.log(error.message)
+  }
 }
