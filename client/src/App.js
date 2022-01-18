@@ -23,6 +23,7 @@ const App = () => {
         <Typography className={classes.heading} variant="h2" align="center">TravelUp</Typography>
         <img className={classes.image} src={travelup} alt="travelup" height="60" />
       </AppBar>
+
       <Grow in>
         <Container>
           <Grid container justify="space-between" alignItems="stretch" spacing={4}>
@@ -36,7 +37,6 @@ const App = () => {
         </Container>
       </Grow >
     </Container >
-
   );
 }
 
