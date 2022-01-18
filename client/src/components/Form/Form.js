@@ -6,49 +6,42 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createPost, updatePost } from '../../actions/posts'
 
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({ title: '', message: '', tags: '', selectedFile: '' })
-  // const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null)
+  const post = useSelector((state) => currentId ? state.posts.find(p => p._id === currentId) : null)
   const classes = useStyles()
   const dispatch = useDispatch() //allows to dispatch actions
   // const user = JSON.parse(localStorage.getItem('profile'))
 
-  // useEffect(() => {
-  //   if (post) setPostData(post)
-  // }, [post])
+  useEffect(() => {
+    if (post) setPostData(post)
+  }, [post])
 
   //handles post information once submitted
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(createPost(postData))
-    // if (currentId) {
-    //   dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }))
-    // } else {
-    //   dispatch(createPost({ ...postData, name: user?.result?.name }))
-    // }
-    // clear()
+
+    if (currentId) {
+      dispatch(updatePost(currentId, postData))
+    } else {
+      dispatch(createPost(postData))
+    }
+    clear()
   }
 
+  //reset to empty values once form is submitted
   const clear = () => {
-    //   setCurrentId(null)
-    //   setPostData({ title: '', message: '', tags: '', selectedFile: '' })
+    setCurrentId(null)
+    setPostData({ title: '', message: '', tags: '', selectedFile: '' })
   }
 
-  // if (!user?.result?.name) {
-  //   return (
-  //     <Paper className={classes.paper}>
-  //       <Typography variant="h6" align="center">
-  //         Please Sign In to create your own posts and like other's posts.
-  //       </Typography>
-  //     </Paper>
-  //   );
-  // }
+
 
   return (
     <Paper className={classes.paper}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
         <Typography variant="h6">
-          Create a Post
+          {currentId ? 'Editing' : 'Creating'} a Post
         </Typography>
         {/* <Typography variant="h6" > {currentId ? 'Editing' : 'Creating'} a Post</Typography> */}
         <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
