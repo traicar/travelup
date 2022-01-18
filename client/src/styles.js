@@ -11,11 +11,12 @@ export default makeStyles((theme) => ({
     backgroundColor: '#efefef'
   },
   heading: {
-    color: '#55133B',
+    color: 'teal',
     fontWeight: '400',
-    textTransform: 'lowercase'
+    textTransform: 'lowercase',
+
   },
   image: {
-    marginLeft: '15px'
+    marginLeft: '5px'
   },
 }));
