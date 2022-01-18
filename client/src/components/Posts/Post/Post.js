@@ -21,7 +21,6 @@ const Post = ({ post }) => {
         </Button>
       </div>
 
-
       <div className={classes.details}>
         <Typography variant="body2" color="textSecondary">
           {post.tags.map((tag) => `# ${tag}`)}
