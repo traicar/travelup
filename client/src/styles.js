@@ -8,15 +8,19 @@ export default makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#efefef'
+    backgroundColor: 'red'
   },
   heading: {
-    color: 'teal',
+    color: 'white',
     fontWeight: '400',
     textTransform: 'lowercase',
-
   },
   image: {
     marginLeft: '5px'
   },
+  [theme.breakpoints.down('sm')]: {
+    mainContainer: {
+      flexDirection: "column-reverse"
+    }
+  }
 }));
