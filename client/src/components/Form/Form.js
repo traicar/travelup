@@ -35,8 +35,6 @@ const Form = ({ currentId, setCurrentId }) => {
     setPostData({ title: '', message: '', tags: '', selectedFile: '' })
   }
 
-
-
   return (
     <Paper className={classes.paper}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
