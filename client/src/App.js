@@ -12,13 +12,12 @@ const App = () => {
       <Container maxWidth="lg">
         <Navbar />
         <Routes>
-          <Route path="/auth" exact component={Auth} />
-          <Route path="/" exact component={Home} />
+          <Route path="/" element={<Home />} />
+          <Route path="/auth" element={<Auth />} />
         </Routes>
-        <Home />
       </Container >
-    </BrowserRouter>
 
+    </BrowserRouter>
   );
 }
 
