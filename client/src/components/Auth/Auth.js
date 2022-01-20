@@ -1,21 +1,32 @@
 import React, { useState } from 'react'
-import { Avatar, Button, Form, Paper, Grid, Typography, Container, TextField } from '@material-ui/core'
+import { Avatar, Button, Form, Paper, Grid, Typography, Container } from '@material-ui/core'
 import useStyles from './styles'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Input from './Input'
+import { useNavigate } from 'react-router-dom'
+import { signin, signup } from '../../actions/auth'
+import { useDispatch } from 'react-redux'
+
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }
 
 export const Auth = () => {
-
-  const [showPassword, setShowPassword] = useState(false)
-  const [isSignup, setIsSignup] = useState(false)
-
+  const [showPassword, setShowPassword] = useState(true)
+  const [isSignup, setIsSignup] = useState(true)
+  const [formData, setFormData] = useState(initialState)
   const classes = useStyles()
+  const history = useNavigate()
+  const dispatch = useDispatch()
 
-  const handleSubmit = () => {
-
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (isSignup) {
+      dispatchEvent(signup(formData, history))
+    } else {
+      dispatchEvent(signin(formData, history))
+    }
   }
-  const handleChange = () => {
-
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
   const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword)
 
@@ -51,7 +62,7 @@ export const Auth = () => {
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
             {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
-          <Grid container justify="flex-end">
+          <Grid container justifyContent='flex-end'>
             <Grid item>
               <Button onClick={switchMode}>
                 {isSignup ? "Already have an account? Sign in" : "Don't have an account? Sign up"}
