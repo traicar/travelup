@@ -20,13 +20,13 @@ export const Auth = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (isSignup) {
-      dispatchEvent(signup(formData, history))
+      dispatch(signup(formData, history))
     } else {
-      dispatchEvent(signin(formData, history))
+      dispatch(signin(formData, history))
     }
   }
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    setFormData({ ...formData, [e.target.namSe]: e.target.value })
   }
   const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword)
 
