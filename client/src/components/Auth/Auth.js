@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Avatar, Button, Form, Paper, Grid, Typography, Container } from '@material-ui/core'
+import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core'
 import useStyles from './styles'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import LockOutlinedIcon from '@material-ui/icons/LockOpenOutlined'
 import Input from './Input'
 import { useNavigate } from 'react-router-dom'
 import { signin, signup } from '../../actions/auth'
@@ -10,19 +10,19 @@ import { useDispatch } from 'react-redux'
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' }
 
 export const Auth = () => {
-  const [showPassword, setShowPassword] = useState(true)
-  const [isSignup, setIsSignup] = useState(true)
+  const [showPassword, setShowPassword] = useState(false)
+  const [isSignup, setIsSignup] = useState(false)
   const [formData, setFormData] = useState(initialState)
   const classes = useStyles()
-  const history = useNavigate()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (isSignup) {
-      dispatch(signup(formData, history))
+      dispatch(signup(formData, navigate))
     } else {
-      dispatch(signin(formData, history))
+      dispatch(signin(formData, navigate))
     }
   }
   const handleChange = (e) => {
@@ -63,11 +63,11 @@ export const Auth = () => {
             {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
           <Grid container justifyContent='flex-end'>
-            <Grid item>
-              <Button onClick={switchMode}>
-                {isSignup ? "Already have an account? Sign in" : "Don't have an account? Sign up"}
-              </Button>
-            </Grid>
+
+            <Button onClick={switchMode}>
+              {isSignup ? "Already have an account? Sign in" : "Don't have an account? Sign up"}
+            </Button>
+
           </Grid>
         </form>
       </Paper>
