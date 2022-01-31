@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import useStyles from './styles'
+import useStyles from './styles.js'
 import { TextField, Button, Typography, Paper } from '@material-ui/core'
 import FileBase from 'react-file-base64'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,7 +8,7 @@ import { createPost, updatePost } from '../../actions/posts'
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({ title: '', message: '', tags: '', selectedFile: '' })
-  const post = useSelector((state) => currentId ? state.posts.find(p => p._id === currentId) : null)
+  const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null)
   const classes = useStyles()
   const dispatch = useDispatch() //allows to dispatch actions
   const user = JSON.parse(localStorage.getItem('profile'))
@@ -22,6 +22,7 @@ const Form = ({ currentId, setCurrentId }) => {
     e.preventDefault()
 
     if (currentId) {
+
       dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }))
     } else {
       dispatch(createPost({ ...postData, name: user?.result?.name }))
@@ -61,8 +62,13 @@ const Form = ({ currentId, setCurrentId }) => {
             onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
           />
         </div>
-        <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-        <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+
+        <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>
+          Submit
+        </Button>
+        <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>
+          Clear
+        </Button>
       </form>
     </Paper>
   );
