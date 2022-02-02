@@ -19,9 +19,8 @@ app.use('/posts', postRoutes)
 app.use('/user', userRoutes)
 
 app.get('/', (req, res) => {
-  res.send('Welcome to Instaverse API')
+  res.send('Welcome to Travelup')
 })
-
 
 const CONNECTION_URL = 'mongodb+srv://travelup:GUDishere@cluster0.3louu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
