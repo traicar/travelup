@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container } from "@material-ui/core"
-import Home from './components/Home/Home.js'
+import Home from './components/Home/Home'
 import { Navbar } from './components/Navbar/Navbar'
-import Auth from './components/Auth/Auth.js'
+import Auth from './components/Auth/Auth'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const App = () => {
@@ -16,8 +16,9 @@ const App = () => {
           <Route path="/auth" element={<Auth />} />
         </Routes>
       </Container >
+
     </BrowserRouter>
   );
 }
 
-export default App;
+export default App
