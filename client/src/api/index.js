@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-//connecting front end to back end
+//connecting front end to back end- connected to heroku 
 
-const API = axios.create({ baseURL: 'http://localhost:5000' })
+const API = axios.create({ baseURL: 'https://travelup-mern-app.herokuapp.com' })
+
 
 //if profile exists in local storage, request authorization token from the profile
 API.interceptors.request.use((req) => {
